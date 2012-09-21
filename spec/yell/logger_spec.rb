@@ -57,6 +57,16 @@ describe Yell::Logger do
     end
   end
 
+  context "initialize with :everywhere" do
+    let(:object) { Object.new }
+    it "should be available from any object" do
+      logger = Yell.new :everywhere => true
+
+      object.should respond_to(:logger)
+      object.logger.should == logger
+    end
+  end
+
   context "initialize with a :filename" do
     it "should call adapter with :file" do
       mock.proxy( Yell::Adapters::File ).new( :filename => 'test.log' )
