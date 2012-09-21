@@ -52,10 +52,12 @@ module Yell #:nodoc:
       self.level = @options[:level]
 
       # include this logger to any object if 'everywhere' is defined
-      include_everywhere! if !!@options[:everywhere]
-
-      # set the loggeer's name
-      self.name = @options[:name] if @options[:name]
+      if !!@options[:everywhere]
+        include_everywhere!
+      elsif @options[:name]
+        # set the logger's name
+        self.name = @options[:name]
+      end
 
       # extract adapter
       self.adapter args.pop if args.any?
