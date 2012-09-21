@@ -109,7 +109,18 @@ you global namespace with Yell's subclasses.
 
 ### You want any class to have a logger?
 
-Yell comes with a simple module: +Yell::Loggable+. Simply include this in a class and 
+Yell provides a general logger that can be accessed *everywhere*. Just
+use the :everywhere option when initializing it:
+
+```ruby
+Yell.new :stdout, :everywhere => true
+
+some_instance = SomeClass.new
+some_instance.logger.info "Hello World"
+```
+
+If you prefer to be more picky and have it only in some objects instead
+of everywhere, Yell comes with a simple module: +Yell::Loggable+. Simply include this in a class and 
 you are good to go.
 
 ```ruby
